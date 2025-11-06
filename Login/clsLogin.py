@@ -9,14 +9,14 @@ class clsLogin(QMainWindow):
         self.ui.setupUi(self)
         self.id=0
         self.setFixedHeight(170)
-        self.setFixedWidth(340)
-        self.ui.txtusername.setFocus()
-        self.ui.btnlogin.clicked.connect(self.LoginBtnClick)
+        self.setFixedWidth(370)
+        self.ui.txtUsername.setFocus()
+        self.ui.btnLogin.clicked.connect(self.LoginBtnClick)
         self.m = clsMainWindow()
     def LoginBtnClick(self):
         conn = sqlite3.connect('DataBase.db')
         cursor = conn.cursor()
-        sql = f"select * from User_table where UserName='{self.ui.txtusername.text()}' and Password1='{self.ui.txtpassword.text()}'"
+        sql = f"select * from User_table where UserName='{self.ui.txtUsername.text()}' and Password='{self.ui.txtPassword.text()}'"
         cursor.execute(sql)
         result = cursor.fetchall()
         i = 0

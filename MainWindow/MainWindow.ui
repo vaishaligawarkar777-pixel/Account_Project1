@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>951</width>
+    <height>513</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QMdiArea" name="mdiArea"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>951</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuGroup">
+    <property name="title">
+     <string>Group</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuAccount">
+    <property name="title">
+     <string>Account</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuTransaction">
+    <property name="title">
+     <string>Transaction</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuReport">
+    <property name="title">
+     <string>Report</string>
+    </property>
+    <addaction name="actionMonthly_Report_2"/>
+    <addaction name="actionLast_30_Day_Report_2"/>
+    <addaction name="actionYearly_Report_2"/>
+    <addaction name="actionAccount_Report_2"/>
+    <addaction name="actionGroup_Report_2"/>
+   </widget>
+   <widget class="QMenu" name="menuTools">
+    <property name="title">
+     <string>Tools</string>
+    </property>
+    <addaction name="actionChange_Password_2"/>
+    <addaction name="actionLogin"/>
+    <addaction name="actionAdd_Username"/>
+   </widget>
+   <addaction name="menuGroup"/>
+   <addaction name="menuAccount"/>
+   <addaction name="menuTransaction"/>
+   <addaction name="menuReport"/>
+   <addaction name="menuTools"/>
+  </widget>
+  <action name="actionChange_Password">
+   <property name="text">
+    <string>Change_Password</string>
+   </property>
+  </action>
+  <action name="actionMonthly_Report">
+   <property name="text">
+    <string>Monthly_Report</string>
+   </property>
+  </action>
+  <action name="actionLast_30_Day_Report">
+   <property name="text">
+    <string>Last 30 Day Report</string>
+   </property>
+  </action>
+  <action name="actionYearly_Report">
+   <property name="text">
+    <string>Yearly_Report</string>
+   </property>
+  </action>
+  <action name="actionAccount_Report">
+   <property name="text">
+    <string>Account_Report</string>
+   </property>
+  </action>
+  <action name="actionGroup_Report">
+   <property name="text">
+    <string>Group_Report</string>
+   </property>
+  </action>
+  <action name="actionChange_Password_2">
+   <property name="text">
+    <string>Change_Password</string>
+   </property>
+  </action>
+  <action name="actionLogin">
+   <property name="text">
+    <string>Login</string>
+   </property>
+  </action>
+  <action name="actionMonthly_Report_2">
+   <property name="text">
+    <string>Monthly_Report</string>
+   </property>
+  </action>
+  <action name="actionLast_30_Day_Report_2">
+   <property name="text">
+    <string>Last 30 Day_Report</string>
+   </property>
+  </action>
+  <action name="actionYearly_Report_2">
+   <property name="text">
+    <string>Yearly_Report</string>
+   </property>
+  </action>
+  <action name="actionAccount_Report_2">
+   <property name="text">
+    <string>Account_Report</string>
+   </property>
+  </action>
+  <action name="actionGroup_Report_2">
+   <property name="text">
+    <string>Group_Report</string>
+   </property>
+  </action>
+  <action name="actionAdd_Username">
+   <property name="text">
+    <string>Add_Username</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

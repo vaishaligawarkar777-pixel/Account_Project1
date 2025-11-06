@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>397</width>
+    <height>181</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(148, 155, 255);</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>30</y>
+      <width>100</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>100</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string>User Name</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>90</y>
+      <width>100</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>100</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Password</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txtUsername">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>21</y>
+      <width>191</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txtPassword">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>80</y>
+      <width>191</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnLogin">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>130</y>
+      <width>71</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
+background-color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>Login</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>130</y>
+      <width>71</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
+background-color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>Close</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>326</x>
+     <y>138</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>374</x>
+     <y>146</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
