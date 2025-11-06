@@ -41,7 +41,7 @@ class clsChange_Password(QMainWindow):
                     msg = QMessageBox()
                     msg.setIcon(QMessageBox.Information)
                     msg.setWindowTitle("Info")
-                    msg.setText("Password can not be blank Or Old Password Not Match")
+                    msg.setText("Password can not be blank")
                     msg.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
                     msg.setDefaultButton(QMessageBox.Ok)
 
