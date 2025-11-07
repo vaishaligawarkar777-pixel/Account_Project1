@@ -59,8 +59,6 @@
      <string>Tools</string>
     </property>
     <addaction name="actionChange_Password_2"/>
-    <addaction name="actionLogin"/>
-    <addaction name="actionAdd_Username"/>
    </widget>
    <addaction name="menuGroup"/>
    <addaction name="menuAccount"/>

@@ -71,8 +71,6 @@ class Ui_MainWindow(object):
         self.menuReport.addAction(self.actionAccount_Report_2)
         self.menuReport.addAction(self.actionGroup_Report_2)
         self.menuTools.addAction(self.actionChange_Password_2)
-        self.menuTools.addAction(self.actionLogin)
-        self.menuTools.addAction(self.actionAdd_Username)
         self.menuBar.addAction(self.menuGroup.menuAction())
         self.menuBar.addAction(self.menuAccount.menuAction())
         self.menuBar.addAction(self.menuTransaction.menuAction())

@@ -33,6 +33,7 @@ class Ui_MainWindow(object):
         self.txtOldpassword = QtWidgets.QLineEdit(self.centralwidget)
         self.txtOldpassword.setGeometry(QtCore.QRect(150, 30, 211, 31))
         self.txtOldpassword.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.txtOldpassword.setEchoMode(QtWidgets.QLineEdit.Password)
         self.txtOldpassword.setObjectName("txtOldpassword")
         self.txtNewpassword = QtWidgets.QLineEdit(self.centralwidget)
         self.txtNewpassword.setGeometry(QtCore.QRect(150, 90, 211, 31))

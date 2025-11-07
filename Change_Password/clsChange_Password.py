@@ -17,15 +17,15 @@ class clsChange_Password(QMainWindow):
         self.cursor.execute(sql)
 
     def changeBtnClick(self):
-        sql = f"select * from User_table where Password='{self.ui.txtOldpassword.text()}'"
+        sql = f"select * from User_table where UserName='Vinit'"
         self.cursor.execute(sql)
         result = self.cursor.fetchall()
-        #oldPass = ""
+        oldPass = ""
         for row in result:
-            #oldPass = str(row[2])
-            if self.ui.txtOldpassword.text()!="":
+            oldPass = str(row[2])
+            if self.ui.txtOldpassword.text()!=oldPass:
                 if self.ui.txtNewpassword.text()!="":
-                        sql = f"update User_table set Password='{self.ui.txtNewpassword.text()}' where Password='{self.ui.txtOldpassword.text()}'"
+                        sql = f"update User_table set Password='{self.ui.txtNewpassword.text()}' where where UserName='Vinit'"
                         self.cursor.execute(sql)
                         self.conn.commit()
                         msg = QMessageBox()
@@ -53,5 +53,3 @@ class clsChange_Password(QMainWindow):
                 msg.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
                 msg.setDefaultButton(QMessageBox.Ok)
                 result = msg.exec_()
-
-
