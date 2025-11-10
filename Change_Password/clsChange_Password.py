@@ -23,9 +23,9 @@ class clsChange_Password(QMainWindow):
         oldPass = ""
         for row in result:
             oldPass = str(row[2])
-            if self.ui.txtOldpassword.text()!=oldPass:
+            if self.ui.txtOldpassword.text()==oldPass:
                 if self.ui.txtNewpassword.text()!="":
-                        sql = f"update User_table set Password='{self.ui.txtNewpassword.text()}' where where UserName='Vinit'"
+                        sql = f"update User_table set Password='{self.ui.txtNewpassword.text()}' where UserName='Vinit'"
                         self.cursor.execute(sql)
                         self.conn.commit()
                         msg = QMessageBox()

@@ -39,25 +39,25 @@ class clsGroup(QMainWindow):
     def tableClick(self):
         cr=self.ui.tableWidget.currentRow().__index__()
         print(cr)
-        self.Sr.No = self.ui.tableWidget.item(cr,0).text()
+        self.Sr_No = self.ui.tableWidget.item(cr,0).text()
         self.ui.txtGroupname.setText(self.ui.tableWidget.item(cr,1).text())
 
     def NewBtnClick(self):
         self.ui.txtGroupname.setText("")
 
     def SaveBtnClick(self):
-        sql = f"insert into Group_Data values(null,'{self.ui.txtGroupname.text()})"
+        sql = f"insert into Group_Data values(null,'{self.ui.txtGroupname.text()}')"
         self.cursor.execute(sql)
         self.conn.commit()
         self.loadDataInTable()
 
     def UpdateBtnClick(self):
-        sql = f"Update Group_Data set Groupname='{self.ui.txtGroupname.text()} where Sr.No={self.sr.No}"
+        sql = f"Update Group_Data set Groupname='{self.ui.txtGroupname.text()}' where Sr_No='{self.Sr_No}'"
         self.cursor.execute(sql)
         self.conn.commit()
         self.loadDataInTable()
 
     def DeleteBtnClick(self):
-        self.cursor.execute(f"delete from Group_Data where id={self.id}")
+        self.cursor.execute(f"delete from Group_Data where Sr_No={self.Sr_No}")
         self.conn.commit()
         self.loadDataInTable()
