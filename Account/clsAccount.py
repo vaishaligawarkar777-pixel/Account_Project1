@@ -45,8 +45,7 @@ class clsAccount(QMainWindow):
         cr=self.ui.tableWidget.currentRow().__index__()
         print(cr)
         self.Sr_No= self.ui.tableWidget.item(cr,0).text()
-        #self.ui.cmbSelectgroup.currentText(self.ui.tableWidget.item(cr,1).text())
-        self.ui.txtAccountname.setText(self.ui.tableWidget.item(cr,1).text())
+        self.ui.txtAccountname.setText(self.ui.tableWidget.item(cr,2).text())
 
     def NewBtnClick(self):
         self.ui.cmbSelectgroup.currentText("")
@@ -61,7 +60,7 @@ class clsAccount(QMainWindow):
 
     def UpdateBtnClick(self):
         Selectgroup = self.ui.cmbSelectgroup.currentText()
-        sql = f"Update Account_Data set Group='{Selectgroup}',Accountname='{self.ui.txtAccountname.text()}' where Sr_No='{self.Sr_No}'"
+        sql = f"Update Account_Data set Group_Name='{Selectgroup}',Account_Name='{self.ui.txtAccountname.text()}' where Sr_No='{self.Sr_No}'"
         self.cursor.execute(sql)
         self.conn.commit()
         self.loadDataInTable()

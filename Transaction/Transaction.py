@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(974, 671)
+        MainWindow.resize(974, 733)
         MainWindow.setStyleSheet("background-color: rgb(94, 190, 141);")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -65,7 +65,7 @@ class Ui_MainWindow(object):
         self.radPayment.setStyleSheet("font: 10pt \"MS Shell Dlg 2\";")
         self.radPayment.setObjectName("radPayment")
         self.tableWidget = QtWidgets.QTableWidget(self.centralwidget)
-        self.tableWidget.setGeometry(QtCore.QRect(20, 220, 431, 431))
+        self.tableWidget.setGeometry(QtCore.QRect(20, 280, 431, 431))
         self.tableWidget.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.tableWidget.setObjectName("tableWidget")
         self.tableWidget.setColumnCount(0)
@@ -81,7 +81,7 @@ class Ui_MainWindow(object):
         self.txtNote.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.txtNote.setObjectName("txtNote")
         self.tableWidget_2 = QtWidgets.QTableWidget(self.centralwidget)
-        self.tableWidget_2.setGeometry(QtCore.QRect(520, 220, 431, 431))
+        self.tableWidget_2.setGeometry(QtCore.QRect(520, 280, 431, 431))
         self.tableWidget_2.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.tableWidget_2.setObjectName("tableWidget_2")
         self.tableWidget_2.setColumnCount(0)
@@ -111,6 +111,16 @@ class Ui_MainWindow(object):
         self.btnsave.setStyleSheet("font: 10pt \"MS Shell Dlg 2\";\n"
 "background-color: rgb(255, 255, 255);")
         self.btnsave.setObjectName("btnsave")
+        self.label_6 = QtWidgets.QLabel(self.centralwidget)
+        self.label_6.setGeometry(QtCore.QRect(10, 230, 141, 21))
+        self.label_6.setMinimumSize(QtCore.QSize(110, 0))
+        self.label_6.setStyleSheet("font: 10pt \"MS Shell Dlg 2\";")
+        self.label_6.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.label_6.setObjectName("label_6")
+        self.txtAmount = QtWidgets.QLineEdit(self.centralwidget)
+        self.txtAmount.setGeometry(QtCore.QRect(180, 230, 261, 31))
+        self.txtAmount.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.txtAmount.setObjectName("txtAmount")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -131,3 +141,4 @@ class Ui_MainWindow(object):
         self.btnnew.setText(_translate("MainWindow", "New"))
         self.pushButton_5.setText(_translate("MainWindow", "Close"))
         self.btnsave.setText(_translate("MainWindow", "Save"))
+        self.label_6.setText(_translate("MainWindow", "Amount"))
