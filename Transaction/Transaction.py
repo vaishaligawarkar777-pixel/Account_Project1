@@ -41,6 +41,7 @@ class Ui_MainWindow(object):
         self.dateEdit = QtWidgets.QDateEdit(self.centralwidget)
         self.dateEdit.setGeometry(QtCore.QRect(180, 120, 261, 31))
         self.dateEdit.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.dateEdit.setCalendarPopup(True)
         self.dateEdit.setObjectName("dateEdit")
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
         self.label_3.setGeometry(QtCore.QRect(40, 130, 111, 21))

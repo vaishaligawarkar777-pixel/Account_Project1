@@ -7,21 +7,33 @@ class clsTransaction(QMainWindow):
         super(clsTransaction,self).__init__()
         self.ui=Ui_MainWindow()
         self.ui.setupUi(self)
-        self.setFixedHeight(670)
+        self.setFixedHeight(730)
         self.setFixedWidth(970)
         self.ui.cmbSelectgroup.setFocus()
         self.conn = sqlite3.connect('DataBase.db')
+        self.cursor=self.conn.cursor()
         self.ui.btnnew.clicked.connect(self.NewBtnClick)
         self.ui.btnsave.clicked.connect(self.SaveBtnClick)
         self.ui.btnupdate.clicked.connect(self.UpdateBtnClick)
         self.ui.btndelete.clicked.connect(self.DeleteBtnClick)
         self.ui.radReceived.setChecked(True)
+        sql = "select * from Group_Data"
+        self.cursor.execute(sql)
+        result = self.cursor.fetchall()
+        for row in result:
+            self.ui.cmbSelectgroup.addItem(str(row[1]))
 
-        self.ui.tableWidget.setColumnCount(7)
-        self.ui.tableWidget.setHorizontalHeaderLabels(["ID", "Group_Name", "Account_Name", "Transaction_Type", "Date", "Amount", "Note"])
+        self.ui.tableWidget.setColumnCount(3)
+        self.ui.tableWidget.setHorizontalHeaderLabels(["Sr", "Date", "Amount"])
         self.ui.tableWidget.setColumnWidth(0, 50)
         self.ui.tableWidget.setColumnWidth(1, 150)
         self.ui.tableWidget.setColumnWidth(2, 150)
+
+        self.ui.tableWidget_2.setColumnCount(3)
+        self.ui.tableWidget_2.setHorizontalHeaderLabels(["Sr", "Date", "Amount"])
+        self.ui.tableWidget_2.setColumnWidth(0, 50)
+        self.ui.tableWidget_2.setColumnWidth(1, 150)
+        self.ui.tableWidget_2.setColumnWidth(2, 150)
 
 
         Current_Date = QDate.currentDate()
@@ -30,9 +42,10 @@ class clsTransaction(QMainWindow):
         self.ui.tableWidget.clicked.connect(self.tableClick)
         self.loadDataInTable()
 
+
     def loadDataInTable(self):
         self.cursor.execute(f"select * from Transaction_Data")
-        result = self.cursor.fetchall()
+        result=self.cursor.fetchall()
         self.ui.tableWidget.setRowCount(0)
         rw = 0
         for row in result:
@@ -41,10 +54,15 @@ class clsTransaction(QMainWindow):
             self.ui.tableWidget.setItem(rw - 1, 0, QTableWidgetItem(str(row[0])))
             self.ui.tableWidget.setItem(rw - 1, 1, QTableWidgetItem(str(row[1])))
             self.ui.tableWidget.setItem(rw - 1, 2, QTableWidgetItem(str(row[2])))
-            self.ui.tableWidget.setItem(rw - 1, 3, QTableWidgetItem(str(row[3])))
-            self.ui.tableWidget.setItem(rw - 1, 4, QTableWidgetItem(str(row[4])))
-            self.ui.tableWidget.setItem(rw - 1, 5, QTableWidgetItem(str(row[5])))
-            self.ui.tableWidget.setItem(rw - 1, 6, QTableWidgetItem(str(row[6])))
+
+        self.ui.tableWidget_2.setRowCount(0)
+        rw = 0
+        for row in result:
+            rw = int(row) + 1
+            self.ui.tableWidget_2.setColumnCount(rw)
+            self.ui.tableWidget_2.setItem(rw - 1, 0, QTableWidgetItem(str(row[0])))
+            self.ui.tableWidget_2.setItem(rw - 1, 1, QTableWidgetItem(str(row[1])))
+            self.ui.tableWidget_2.setItem(rw - 1, 2, QTableWidgetItem(str(row[2])))
 
     def tableClick(self):
         cr = self.ui.tableWidget.currentRow().__index__()
@@ -74,7 +92,13 @@ class clsTransaction(QMainWindow):
         Selectgroup = self.ui.cmbSelectgroup.currentText()
         SelectAccount = self.ui.cmbSelectAccount.currentText()
         Date = self.ui.dateEdit.date().toString("yyyy/MM/dd")
-        sql = f"insert into Transaction_Data values(null,'{Selectgroup}','{SelectAccount}','{Date}','{self.ui.txtAmount.text()}','{self.ui.txtNote.text()}')"
+        Transaction_Type = ""
+        if self.ui.radReceived.isChecked():
+            Transaction_Type = "Received"
+        if self.ui.radPayment.isChecked():
+            Transaction_Type = "Payment"
+
+        sql = f"insert into Transaction_Data values(null,'{Selectgroup}','{SelectAccount}','{Date}','{Transaction_Type}','{self.ui.txtAmount.text()}','{self.ui.txtNote.text()}')"
         self.cursor.execute(sql)
         self.conn.commit()
         self.loadDataInTable()
@@ -82,7 +106,12 @@ class clsTransaction(QMainWindow):
         Selectgroup = self.ui.cmbSelectgroup.currentText()
         SelectAccount = self.ui.cmbSelectAccount.currentText()
         Date = (self.ui.dateEdit.date().toString("yyyy/MM/dd"))
-        sql = f"Update Transaction_Data set Group_Name='{Selectgroup}',Account_Name='{SelectAccount}',Date='{Date}',Amount='{self.ui.txtAmount.text()}',Note='{self.ui.txtNote.text()}'"
+        Transaction_Type = ""
+        if self.ui.radReceived.isChecked():
+            Transaction_Type = "Received"
+        if self.ui.radPayment.isChecked():
+            Transaction_Type = "Payment"
+        sql = f"Update Transaction_Data set Group_Name='{Selectgroup}',Account_Name='{SelectAccount}',Date='{Date}',Transaction_Type'{Transaction_Type},'Amount='{self.ui.txtAmount.text()}',Note='{self.ui.txtNote.text()}'"
         self.cursor.execute(sql)
         self.conn.commit()
         self.loadDataInTable()
