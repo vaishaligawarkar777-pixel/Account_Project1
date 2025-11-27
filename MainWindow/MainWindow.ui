@@ -1,142 +1,1049 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>951</width>
-    <height>513</height>
-   </rect>
-  </property>
-  <property name="windowTitle">
-   <string>MainWindow</string>
-  </property>
-  <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <item>
-     <widget class="QMdiArea" name="mdiArea"/>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>951</width>
-     <height>26</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuGroup">
-    <property name="title">
-     <string>Group</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menuAccount">
-    <property name="title">
-     <string>Account</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menuTransaction">
-    <property name="title">
-     <string>Transaction</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menuReport">
-    <property name="title">
-     <string>Report</string>
-    </property>
-    <addaction name="actionMonthly_Report_2"/>
-    <addaction name="actionLast_30_Day_Report_2"/>
-    <addaction name="actionYearly_Report_2"/>
-    <addaction name="actionAccount_Report_2"/>
-    <addaction name="actionGroup_Report_2"/>
-   </widget>
-   <widget class="QMenu" name="menuTools">
-    <property name="title">
-     <string>Tools</string>
-    </property>
-    <addaction name="actionChange_Password_2"/>
-   </widget>
-   <addaction name="menuGroup"/>
-   <addaction name="menuAccount"/>
-   <addaction name="menuTransaction"/>
-   <addaction name="menuReport"/>
-   <addaction name="menuTools"/>
-  </widget>
-  <action name="actionChange_Password">
-   <property name="text">
-    <string>Change_Password</string>
-   </property>
-  </action>
-  <action name="actionMonthly_Report">
-   <property name="text">
-    <string>Monthly_Report</string>
-   </property>
-  </action>
-  <action name="actionLast_30_Day_Report">
-   <property name="text">
-    <string>Last 30 Day Report</string>
-   </property>
-  </action>
-  <action name="actionYearly_Report">
-   <property name="text">
-    <string>Yearly_Report</string>
-   </property>
-  </action>
-  <action name="actionAccount_Report">
-   <property name="text">
-    <string>Account_Report</string>
-   </property>
-  </action>
-  <action name="actionGroup_Report">
-   <property name="text">
-    <string>Group_Report</string>
-   </property>
-  </action>
-  <action name="actionChange_Password_2">
-   <property name="text">
-    <string>Change_Password</string>
-   </property>
-  </action>
-  <action name="actionLogin">
-   <property name="text">
-    <string>Login</string>
-   </property>
-  </action>
-  <action name="actionMonthly_Report_2">
-   <property name="text">
-    <string>Monthly_Report</string>
-   </property>
-  </action>
-  <action name="actionLast_30_Day_Report_2">
-   <property name="text">
-    <string>Last 30 Day_Report</string>
-   </property>
-  </action>
-  <action name="actionYearly_Report_2">
-   <property name="text">
-    <string>Yearly_Report</string>
-   </property>
-  </action>
-  <action name="actionAccount_Report_2">
-   <property name="text">
-    <string>Account_Report</string>
-   </property>
-  </action>
-  <action name="actionGroup_Report_2">
-   <property name="text">
-    <string>Group_Report</string>
-   </property>
-  </action>
-  <action name="actionAdd_Username">
-   <property name="text">
-    <string>Add_Username</string>
-   </property>
-  </action>
- </widget>
- <resources/>
- <connections/>
-</ui>
+					PRACTICAL-1
+
+
+Q.1.Write the query for emp_master table :
+
+CODE : 
+SQL>create table emp_master04(emp_id varchar(5)primary key,emp_name char(15),city char(15),emp_salary number(10));
+
+Table created.
+
+SQL> desc emp_master04;
+
+     Name            Null?         Type
+ --------------- ------------ -----------------
+   EMP_ID          NOT NULL      VARCHAR2(5)
+   EMP_NAME                      CHAR(15)
+   CITY                          CHAR(15)
+   EMP_SALARY                    NUMBER(10)
+
+SQL> insert into emp_master04 values('e-001','Vaishali','Nagpur','20000');
+
+1 row created.
+
+SQL> insert into emp_master04 values('e-002','Ram','Nagpur','30000');
+
+1 row created.
+
+SQL> insert into emp_master04 values('e-003','Harshali','Akola','40000');
+
+1 row created.
+
+SQL> insert into emp_master04 values('e-004','Ashwin','Nashik','50000');
+
+1 row created.
+
+SQL> insert into emp_master04 values('e-005','kartik','Pune','45000');
+
+1 row created.
+
+SQL> insert into emp_master04 values('e-006','Isha','Mumbai','25000');
+
+1 row created.
+
+SQL> select*from emp_master04;
+
+ EMP_I     EMP_NAME         CITY         EMP_SALARY
+------- --------------- -------------- ---------------
+e-001      Vaishali        Nagpur           20000
+e-002      Ram             Nagpur           30000
+e-003      Harshali        Akola            40000
+e-004      Ashwin          Nashik           50000
+e-005      kartik          Pune             45000
+e-006      Isha            Mumbai           25000
+
+6 rows selected.
+
+SQL> select*from emp_master04 where city='nagpur' or city='mumbai';
+
+ EMP_I    EMP_NAME       CITY      EMP_SALARY
+-------- ------------ ---------- --------------
+ e-001    Vaishali      Nagpur       20000
+ e-002 	  Harshal       Pune         30000
+ e-006    Pravina       Mumbai       25000
+
+SQL> select*from emp_master04 where emp_salary>=20000 and emp_salary<30000;
+
+ EMP_I    EMP_NAME      CITY      EMP_SALARY
+-------- ---------- ------------ -------------
+ e-001     Isha        Nagpur        20000
+ e-006     Nitu        Mumbai        25000
+
+SQL> select*from emp_master04 where emp_name like'ra%';
+
+ EMP_I      EMP_NAME       CITY      EMP_SALARY
+-------- -------------- ---------- --------------
+ e-001       Mahesh       Nagpur       20000
+ e-002       Ram          Nagpur       30000
+
+SQL> commit;
+
+Commit complete.
+
+
+
+					PRACTICAL-2
+
+
+Q.2.Find the details of all employees who work in any departments.
+
+CODE : SQL> create table emp04(emp_id varchar(5)primary key,emp_name char(15),emp_age number(5));
+
+Table created.
+
+SQL> desc emp;
+      Name          Null?         Type
+ -------------- ------------ ----------------
+    EMP_ID        NOT NULL     VARCHAR2(10)
+    EMP_NAME                   CHAR(15)
+    EMP_AGE                    NUMBER(5)
+
+
+SQL> insert into emp04 values('e-001','Vaishali','21');
+
+1 row created.
+
+SQL>  insert into emp04 values('e-002','Vaishnavi','22');
+
+1 row created.
+
+SQL>  insert into emp04 values('e-003','Kajal','21');
+
+1 row created.
+
+SQL>  insert into emp04 values('e-004','Avantika','24');
+
+1 row created.
+
+SQL>  insert into emp04 values('e-005','Nikhil','25');
+
+1 row created.
+
+SQL> select*from emp04;
+
+  EMP_ID       EMP_NAME       EMP_AGE
+----------   ---------------  -------------
+  e-001        Vaishali         21
+  e-002        Vaishnavi        22
+  e-003        Kajal            21
+  e-004        Avantika         24
+  e-005        Nikhil           25
+
+
+SQL> create table dept04(emp_id varchar(5) primary key,dept_id varchar(5),dept_name char(15),emp_salary number(5));
+
+Table created.
+
+SQL> desc dept04;
+     Name             Null?         Type
+ ----------------- ----------- ----------------
+    EMP_ID			 VARCHAR2(5)
+    DEPT_ID                      CHAR(15)
+    DEPT_NAME                    NUMBER(5)                
+    EMP_SALARY      NOT NULL     VARCHAR2(5)
+                       
+                                    
+ 
+SQL>  insert into dept04 values('e-001','d-001','MCA','10000');
+
+1 row created.
+
+SQL> insert into dept04 values('e-002','d-002','MBA','15000');
+
+1 row created.
+
+SQL> insert into dept04 values('e-003','d-003','MA','20000');
+
+1 row created.
+
+SQL> select*from dept04;
+
+
+  EMP_ID      DEPT_ID      DEPT_NAME       EMP_SALARY
+---------- ------------- --------------- --------------
+  e-001        d-001          MCA            10000
+  e-002        d-002          MBA            15000
+  e-003        d-003          MA             20000
+
+SQL> select*from emp04 where emp_id in(select emp_id from dept04);
+
+ EMP_ID      EMP_NAME        EMP_AGE
+--------- ---------------- -----------
+ e-001        Vaishali         21
+ e-002        Vaishnavi        22
+ e-003        Kajal            21
+
+SQL> commit;
+
+Commit complete.
+
+
+
+					PRACTICAL-3
+
+
+Q.3.Write a sql query using ‘using’ keyword for joining the two tables.
+
+CODE : SQL> create table dept04(dept_id varchar2(5)primary key,dept_name char(15));
+
+Table created.
+
+SQL> desc dept04;
+
+     Name          Null?       Type
+ -------------- ----------- ---------------
+   DEPT_ID        NOT NULL    VARCHAR2(5)
+   DEPT_NAME                  CHAR(15)
+
+
+SQL> insert into dept04 values('d_1','Purchase');
+
+1 row created.
+
+SQL>  insert into dept04 values('d_2','Sales');
+
+1 row created.
+
+SQL>  insert into dept04 values('d_3','Production');
+
+1 row created.
+
+SQL>  insert into dept04 values('d_4','Marketing');
+
+1 row created.
+
+SQL>  insert into dept04 values('d_5','Finance');
+
+1 row created.
+
+SQL> select*from dept04;
+
+
+  DEPT_ID      DEPT_NAME
+----------- ----------------
+   d_1         Purchase
+   d_2         Sales
+   d_3         Production
+   d_4         Marketing
+   d_5         Finance
+
+SQL> create table employee04(emp_id varchar(5)primary key,dept_id varchar(5),dept_name char(15));
+
+Table created.
+
+SQL> desc employee04;
+    Name          Null?       Type
+ ------------- ---------- --------------
+   EMP_ID       NOT NULL    VARCHAR2(5)
+   DEPT_ID                  VARCHAR2(5)
+   DEPT_NAME                CHAR(15)
+
+
+SQL> insert into employee04 values('1001','d_1','a');
+
+1 row created.
+
+SQL> insert into employee04 values('1002','d_1','b');
+
+1 row created.
+
+SQL> insert into employee04 values('1003','d_1','c');
+
+1 row created.
+
+SQL> insert into employee04 values('1004','d_2','d');
+
+1 row created.
+
+SQL> insert into employee04 values('1005','d_2','e');
+
+1 row created.
+
+SQL> insert into employee04 values('1006','d_3','f');
+
+1 row created.
+
+SQL> insert into employee04 values('1007','d_3','g');
+
+1 row created.
+
+SQL> insert into employee04 values('1008','d_3','h');
+
+1 row created.
+
+SQL> insert into employee04 values('1009','d_4','i');
+
+1 row created.
+
+SQL> select*from employee04;
+
+  EMP_ID     DEPT_ID      DEPT_NAME
+---------- ----------- ---------------
+  1001         d_1            a
+  1002         d_1            b
+  1003         d_1            c
+  1004         d_2            d
+  1005         d_2            e
+  1006         d_3            f
+  1007         d_3            g
+  1008         d_3            h
+  1009         d_4            i
+
+9 rows selected.
+
+SQL> select*from employee04 join dept04 using(dept_id);
+
+
+  DEPT_ID     EMP_ID     DEPT_NAME     DEPT_NAME
+----------- ---------- ------------- ---------------
+   d_1         1001          a          Purchase
+   d_1         1002          b          Purchase
+   d_1         1003          c          Purchase
+   d_2         1004          d          Sales
+   d_2         1005          e          Sales
+   d_3         1006          f          Production
+   d_3         1007          g          Production
+   d_3         1008          h          Production
+   d_4         1009          i          Marketing
+
+
+9 rows selected.
+
+
+					PRACTICAL-4
+
+
+Q.4.Write a sql query using ‘on’ keyword for joining the two tables.
+
+CODE : SQL> create table student004(id varchar(5)primary key , name char (15),branch char(15));
+
+Table created.
+
+SQL> desc student004;
+
+    Name         Null?         Type
+ ----------- ------------ ----------------
+    ID         NOT NULL     VARCHAR2(5)
+    NAME                    CHAR(15)
+    BRANCH                  CHAR(15)
+
+
+SQL> insert into student004 values('01','Adnan','BCCA');
+
+1 row created.
+
+SQL> insert into student004 values('02','Shekhar','MCA');
+
+1 row created.
+
+SQL> insert into student004 values('03','Piyush','BCA');
+
+1 row created.
+
+SQL> insert into student004 values('04','Ruhan','BBA');
+
+1 row created.
+
+SQL> select*from student004;
+
+  ID      NAME       BRANCH
+------ ---------- ------------
+  01     Adnan        BCCA
+  02     Shekhar      MCA
+  03     Piyush       BCA
+  04     Ruhan        BBA
+
+
+SQL> create table sport04(s_id varchar(5)primary key,sport char(15));
+
+Table created.
+
+SQL> desc sport04;
+
+    Name       Null?         Type
+ ---------- ------------ ---------------
+    S_ID      NOT NULL    VARCHAR2(5)
+    SPORT                 CHAR(15)
+
+
+SQL> insert into sport04 values('01','Cricket_ball');
+
+1 row created.
+
+SQL> insert into sport04 values('02','Volly_ball');
+
+1 row created.
+
+SQL> insert into sport04 values('03','Kabddii');
+
+1 row created.
+
+SQL> insert into sport04 values('04','Football');
+
+1 row created.
+
+SQL> select*from sport04;
+
+  S_ID        SPORT
+-------- ---------------
+   01     Cricket_ball
+   02     Volly_ball
+   03     Kabddii
+   04     Football
+
+SQL> select*from student004 S join sport04 A ON S.id=A.s_id;
+
+
+  ID      NAME       BRANCH      S_ID        SPORT
+------ ---------- ------------ -------- ----------------
+  01     Adnan        BCCA        01      Cricket_ball
+  02     Shekhar      MCA         02      Volly_ball
+  03     Piyush       BCA         03      Kabddii
+  04     Ruhan        BBA         04      Football
+
+
+
+					PRACTICAL-5
+
+
+Q.5.Write a SQL query to perform multiple join method.
+
+CODE : SQL> create table student04(stud_id varchar(5)primary key,stud_name char(15),stud_branch char(15));
+
+Table created.
+
+SQL> desc student04;
+
+     Name           Null?        Type
+ --------------- ----------- ---------------
+   STUD_ID         NOT NULL    VARCHAR2(5)
+   STUD_NAME                   CHAR(15)
+   STUD_BRANCH                 CHAR(15)
+
+
+SQL> insert into student04 values('s_1','Abhinav','MCA');
+
+1 row created.
+
+SQL>  insert into student04 values('s_2','Vinit','MBA');
+
+1 row created.
+
+SQL>  insert into student04 values('s_3','Mahesh','MCM');
+
+1 row created.
+
+SQL>  insert into student04 values('s_4','Amit','M.Tech');
+
+1 row created.
+
+SQL> select*from student04;
+
+  STUD_ID     STUD_NAME     STUD_BRANCH
+----------- ------------- ---------------
+    s_1       Abhinav          MCA
+    s_2       Vinit            MBA
+    s_3       Mahesh           MCM
+    s_4       Amit             M.Tech
+
+
+SQL> create table marks04(stud_id varchar(5)primary key,aggregate number(5));
+
+Table created.
+
+SQL> desc marks04;
+
+    Name         Null?         Type
+ ------------ ------------ ------------- 
+  STUD_ID       NOT NULL    VARCHAR2(5)
+  AGGREGATE                 NUMBER(5)
+
+
+SQL> insert into marks04 values('s_1','73');
+
+1 row created.
+
+SQL> insert into marks04 values('s_2','85');
+
+1 row created.
+
+SQL> insert into marks04 values('s_3','90');
+
+1 row created.
+
+SQL> insert into marks04 values('s_4','75');
+
+1 row created.
+
+SQL> select*from marks04;
+
+  STUD_ID     AGGREGATE
+----------  -------------
+   s_1           73
+   s_2           85
+   s_3           90
+   s_4           75
+
+
+SQL> create table attendance(stud_id varchar(5)primary key,stud_attend number(5));
+
+Table created.
+
+
+SQL> desc attendance;
+
+   Name              Null?          Type
+ ---------------  ------------  ---------------- 
+   STUD_ID          NOT NULL      VARCHAR2(5)
+   STUD_ATTEND                    NUMBER(5)
+
+
+SQL> insert into attendance values('s_1','82');
+
+1 row created.
+
+SQL> insert into attendance values('s_2','69');
+
+1 row created.
+
+SQL> insert into attendance values('s_3','82');
+
+1 row created.
+
+SQL> insert into attendance values('s_4','63');
+
+1 row created.
+
+SQL> select*from attendance;
+
+  STUD_ID      STUD_ATTEND
+-----------  ---------------
+   s_1             82
+   s_2             69
+   s_3             82
+   s_4             63
+
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select S.stud_id,S.stud_name,M.aggregate,A.stud_attend from student04 S inner join marks04 M on S.stud_id=M.stud_id inner join attendance A on M.stud_id=A.stud_id where A.
+
+2  Stud_attend>=75;
+
+  STUD_ID      STUD_NAME      AGGREGATE      STUD_ATTEND
+-----------  -------------  -------------  ----------------
+    s_1        Abhijeet          73              82
+    s_3        Ankit             90              82
+
+SQL> commit;
+
+Commit complete.
+
+
+					PRACTICAL-6
+
+
+Q.6.Write a sql query to perform the commands  transaction control language(TCL).
+CODE : SQL> create table sport04(id varchar(2)primary key,name char(15),score number(5));
+
+Table created.
+
+SQL> desc sport04;
+
+   Name        Null?          Type
+ ---------- ------------  ---------------- 
+   ID         NOT NULL      VARCHAR2(2)
+   NAME                     CHAR(15)
+   SCORE                    NUMBER(5)
+
+
+SQL> insert into sport04 values('s1','Anisha','20');
+
+1 row created.
+
+SQL>  insert into sport04 values('s2','Rohan',30);
+
+1 row created.
+
+SQL>  insert into sport04 values('s3','Kajal',40);
+
+1 row created.
+
+SQL> select*from sport04;
+
+  ID       NAME        SCORE
+------  -----------  ----------
+  s1      Anisha         20
+  s2      Rohan          30
+  s3      Kajal          40
+
+
+SQL> commit;
+
+Commit complete.
+
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select*from sport04;
+
+
+  ID       NAME        SCORE
+------  -----------  ----------
+  s1      Anisha         20
+  s2      Rohan          30
+  s3      Kajal          40
+
+
+SQL>  insert into sport04 values('s4','Avantika',50);
+
+1 row created.
+
+
+SQL> select*from sport04;
+
+  ID       NAME         SCORE
+------  ------------  ----------
+  s1      Anisha          20
+  s2      Rohan           30
+  s3      Kajal           40
+  s4      Avantika        50
+
+
+SQL> rollback
+  2
+SQL> rollback;
+
+Rollback complete.
+
+
+SQL> select*from sport04;
+
+  ID       NAME        SCORE
+------  ----------- -----------
+  s1      Anisha         20
+  s2      Rohan          30
+  s3      Kajal          40
+
+SQL>  insert into sport04 values('s4','Avantika',50);
+
+1 row created.
+
+SQL> select*from sport04;
+
+  ID       NAME      SCORE
+------  ---------- ----------
+  s1      Anisha       20
+  s2      Rohan        30
+  s3      Kajal        40
+  s4      Avantika     50
+
+
+SQL> rollback;
+
+Rollback complete.
+
+
+SQL> select*from sport04;
+
+  ID       NAME       SCORE
+------  ----------- ----------
+  s1      Anisha        20
+  s2      Rohan         30
+  s3      Kajal         40
+
+
+SQL> savepoint A;
+
+Savepoint created.
+
+SQL>  insert into sport04 values('s5','Rani',60);
+
+1 row created.
+
+SQL>  insert into sport04 values('s6','Priti',70);
+
+1 row created.
+
+SQL> savepoint B;
+
+Savepoint created.
+
+SQL> select*from sport04;
+
+  ID       NAME       SCORE
+------  ----------  ----------
+  s1      Anisha        20
+  s2      Rohan         30
+  s3      Kajal         40
+  s5      Rani          60
+  s6      Priti         70
+
+
+SQL>  insert into sport04 values('s7','Anita',80);
+
+1 row created.
+
+SQL> savepoint C;
+
+Savepoint created.
+
+SQL> select*from sport04;
+
+  ID       NAME       SCORE
+------  ----------- ---------
+  s1      Anisha        20
+  s2      Rohan         30
+  s3      Kajal         40
+  s5      Rani          60
+  s6      Priti         70
+  s7      Anita         80
+
+
+6 rows selected.
+
+SQL> rollback to B;
+
+Rollback complete.
+
+SQL> select*from sport04;
+
+  ID      NAME      SCORE
+------  --------- ---------
+  s1     Anisha       20
+  s2     Rohan        30
+  s3     Kajal        40
+  s5     Rani         60
+  s6     Priti        70
+
+
+SQL> rollback to A;
+
+Rollback complete.
+
+SQL> select*from sport04;
+
+
+  ID       NAME        SCORE
+------  -----------  ----------
+  s1      Anisha         20
+  s2      Rohan          30
+  s3      Kajal          40
+
+
+SQL> rollback to C;
+rollback to C
+*
+ERROR at line 1:
+ORA-01086: savepoint 'C' never established in this session or is invalid
+
+
+
+					PRACTICAL-7
+Q.7.Write a sql query to perform ‘union’ operation.
+
+
+CODE : SQL> create table tab04(id varchar(2)primary key,name char(15),age number(2),city char(15));
+
+Table created.
+
+SQL> desc tab04;
+
+   Name       Null?         Type
+ --------  -----------  ---------------- 
+   ID       NOT NULL      VARCHAR2(2)
+   NAME                   CHAR(15)
+   AGE                    NUMBER(2)
+   CITY                   CHAR(15)
+
+
+SQL> insert into tab04 values('t1','Anisha','20','Nagpur');
+
+1 row created.
+
+SQL> insert into tab04 values('t2','Rohan','23','Nagpur');
+
+1 row created.
+
+SQL> insert into tab04 values('t3','Avantika','24','Mumbai');
+
+1 row created.
+
+SQL> insert into tab04 values('t4','Priya','25','Pune');
+
+1 row created.
+
+SQL> insert into tab04 values('t5','Kajal','26','Akola');
+
+1 row created.
+
+SQL> select*from tab04;
+
+
+  ID       NAME          AGE CITY
+------  ------------  -------------- 
+  t1      Anisha         20 Nagpur
+  t2      Rohan          23 Nagpur
+  t3      Avantika       24 Mumbai
+  t4      Priya          25 Pune
+  t5      Kajal          26 Akola
+
+
+SQL> create table tab004(e_id varchar(3) primary key,e_name char(15),e_salary number(5),city char(15));
+
+Table created.
+
+SQL> desc tab004;
+
+   Name           Null?         Type
+ ------------  -----------  -------------- 
+   E_ID          NOT NULL     VARCHAR2(3)
+   E_NAME                     CHAR(15)
+   E_SALARY                   NUMBER(5)
+   CITY                       CHAR(15)
+
+
+SQL> insert into tab004 values('e_1','Anisha','10000','Nagpur');
+
+1 row created.
+
+SQL> insert into tab004 values('e_2','Anita','20000','Mumbai');
+
+1 row created.
+
+SQL> insert into tab004 values('e_3','Sonu','30000','Satara');
+
+1 row created.
+
+SQL> insert into tab004 values('e_4','Ankita','40000','Latur');
+
+1 row created.
+
+SQL> select*from tab004;
+
+
+  E_ID      E_NAME      E_SALARY       CITY
+--------  ----------  ------------  -----------
+  e_1       Anisha       10000        Nagpur
+  e_2       Anita        20000        Mumbai
+  e_3       Sonu         30000        Satara
+  e_4       Ankita       40000        Latur
+
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select city from tab04 union select city from tab004 order by city;
+
+
+  CITY
+----------
+ Akola
+ Latur
+ Mumbai
+ Nagpur
+ Pune
+ Satara
+
+6 rows selected.
+
+					PRACTICAL-8
+
+
+Q.8.Write a sql query to perform the operation of alter command.
+
+CODE : create table emp04(e_id varchar(3),e_name char(15),e_city char(15),e_salary number(5));
+
+Table created.
+
+SQL> desc emp04;
+
+    Name        Null?        Type
+ ----------  -----------  --------------
+   E_ID                     VARCHAR2(3)
+   E_NAME                   CHAR(15)
+   E_CITY                   CHAR(15)
+   E_SALARY                 NUMBER(5)
+
+
+SQL> alter table emp04 add primary key(e_id);
+
+Table altered.
+
+SQL> desc emp04;
+
+   Name           Null?        Type
+ ------------  -----------  ---------------- 
+   E_ID          NOT NULL     VARCHAR2(3)
+   E_NAME                     CHAR(15)
+   E_CITY                     CHAR(15)
+   E_SALARY                   NUMBER(5)
+
+
+SQL> alter table emp04 modify e_salary number(7);
+
+Table altered.
+
+SQL> desc emp04;
+
+
+   Name            Null?          Type
+ -------------  -----------  --------------- 
+   E_ID           NOT NULL     VARCHAR2(3)
+   E_NAME                      CHAR(15)
+   E_CITY                      CHAR(15)
+   E_SALARY                    NUMBER(7)
+
+
+SQL> alter table emp04 rename column e_city to city;
+
+Table altered.
+
+SQL> desc emp04;
+
+    Name           Null?          Type
+ -------------  -----------  ---------------  
+    E_ID          NOT NULL      VARCHAR2(3)
+    E_NAME                      CHAR(15)
+    CITY                        CHAR(15)
+    E_SALARY                    NUMBER(7)
+
+
+SQL> alter table emp04 add e_age number(3);
+
+Table altered.
+
+SQL> desc emp04;
+
+    Name        Null?         Type
+ ----------  -----------  ---------------
+    E_ID       NOT NULL     VARCHAR2(3)
+    E_NAME                  CHAR(15)
+    CITY                    CHAR(15)
+    E_SALARY                NUMBER(7)
+    E_AGE                   NUMBER(3)
+
+
+SQL> insert into emp04 values('e_1','Ankita','Nagpur','10000',20);
+
+1 row created.
+SQL> insert into emp04 values('e_2','Anita','Latur','20000',30);
+
+1 row created.
+
+SQL> insert into emp04 values('e_3','Rohan','Pune','30000',40);
+
+1 row created.
+
+SQL> insert into emp04 values('e_4','Avantika','Mumbai','40000',50);
+
+1 row created.
+
+SQL> insert into emp04 values('e_5','Kajal','Akola','50000',60);
+
+1 row created.
+
+SQL> select*from emp04;
+
+
+  E_ID      E_NAME           CITY          E_SALARY       E_AGE
+--------  --------------  ------------  --------------  ----------
+  e_1       Ankita          Nagpur           10000         20
+  e_2       Anita           Latur            20000         30
+  e_3       Rohan           Pune             30000         40
+  e_4       Avantika        Mumbai           40000         50
+  e_5       Kajal           Akola            50000         60
+
+
+6 rows selected.
+
+
+SQL> update emp04 set e_name='Krunal' where e_id='e_1';
+
+1 row updated.
+
+SQL> select*from emp04;
+
+
+  E_ID       E_NAME          CITY          E_SALARY      E_AGE
+-------  --------------  ------------   ------------  --------
+  e_1       Krunal          Nagpur         10000         20
+  e_2       Anita           Latur          20000         30
+  e_3       Rohan           Pune           30000         40
+  e_4       Avantika        Mumbai         40000         50
+  e_5       Kajal           Akola          50000         60
+
+
+
+					PRACTICAL-9
+
+
+Q.9.Write a pl/sql program for Arithmetic operation.
+
+CODE : SQL> set serveroutput on
+SQL> declare
+  2  A integer;
+  3  B integer;
+  4  C integer;
+  5  D integer;
+  6  E integer;
+  7  F integer;
+  8  begin
+  9  A:=&A;
+ 10  B:=&B;
+ 11  C:=A+B;
+ 12  D:=A-B;
+ 13  E:=A*B;
+ 14  F:=A/B;
+ 15  DBMS_output.put_line('The addition of two number:'||C);
+ 16   DBMS_output.put_line('The subtraction of two number:'||D);
+ 17   DBMS_output.put_line('The multiplication of two number:'||E);
+ 18   DBMS_output.put_line('The Division of two number:'||F);
+ 19  end;
+ 20  /
+Enter value for a: 5
+old   9: A:=&A;
+new   9: A:=5;
+Enter value for b: 6
+old  10: B:=&B;
+new  10: B:=6;
+The addition of two number:11
+The subtraction of two number:-1
+The multiplication of two number:30
+The Division of two number:1
+
+PL/SQL procedure successfully completed.
+
+
+					PRACTICAL-10
+
+
+Q.10. Write a pl/sql program for sum of 1 to 10 odd numbers.
+
+CODE : SQL> set serveroutput on
+SQL> declare
+  2  sum1 number:=0;
+  3  num number:=1;
+  4  begin
+  5  WHILE num<=10 LOOP
+  6  DBMS_output.put_line(num);
+  7  sum1:=sum1+num;
+  8  num:=num+2;
+  9  end LOOP;
+ 10  DBMS_output.put_line('sum of all odd number:'||sum1);
+ 11  end;
+ 12  /
+1
+3
+5
+7
+9
+sum of all odd number:25
+
+PL/SQL procedure successfully completed.
+

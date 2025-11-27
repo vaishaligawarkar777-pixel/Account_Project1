@@ -9,6 +9,7 @@ class clsTransaction(QMainWindow):
         super(clsTransaction, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.id =0
         self.setFixedHeight(730)
         self.setFixedWidth(1020)
         self.ui.cmbSelectgroup.setFocus()
@@ -18,7 +19,22 @@ class clsTransaction(QMainWindow):
         self.ui.btnsave.clicked.connect(self.SaveBtnClick)
         self.ui.btnupdate.clicked.connect(self.UpdateBtnClick)
         self.ui.btndelete.clicked.connect(self.DeleteBtnClick)
+
         self.ui.radReceived.setChecked(True)
+
+        Current_Date = QDate.currentDate()
+        self.ui.dateEdit.setDate(Current_Date)
+        #self.loadDataInTable()
+        self.ui.cmbSelectgroup.currentTextChanged.connect(self.groupSelect)
+
+
+        self.ui.Receivedtable.setColumnCount(4)
+        self.ui.Receivedtable.setHorizontalHeaderLabels(["Sr", "Date", "Amount","Note"])
+        self.ui.Receivedtable.setColumnWidth(3,350)
+        self.ui.Paymenttable.setColumnCount(4)
+        self.ui.Paymenttable.setHorizontalHeaderLabels(["Sr", "Date", "Amount", "Note"])
+        self.ui.Paymenttable.setColumnWidth(3, 350)
+
         self.ui.cmbSelectgroup.addItem("Select Group")
         sql = "select * from Group_Data"
         self.cursor.execute(sql)
@@ -26,25 +42,61 @@ class clsTransaction(QMainWindow):
         for row in result:
             self.ui.cmbSelectgroup.addItem(str(row[1]))
 
-            self.ui.tableWidget.setColumnCount(3)
-            self.ui.tableWidget.setHorizontalHeaderLabels(["Sr", "Date", "Amount"])
-            self.ui.tableWidget.setColumnWidth(0, 50)
-            self.ui.tableWidget.setColumnWidth(1, 150)
-            self.ui.tableWidget.setColumnWidth(2, 150)
+        self.ui.cmbSelectAccount.currentTextChanged.connect(self.loadTableData)
+        self.ui.cmbSelectAccount.currentTextChanged.connect(self.loadTableDataPayment)
+        self.ui.Receivedtable.clicked.connect(self.tableClick1)
+        self.ui.Paymenttable.clicked.connect(self.tableClick2)
 
-            self.ui.tableWidget_2.setColumnCount(3)
-            self.ui.tableWidget_2.setHorizontalHeaderLabels(["Sr", "Date", "Amount"])
-            self.ui.tableWidget_2.setColumnWidth(0, 50)
-            self.ui.tableWidget_2.setColumnWidth(1, 150)
-            self.ui.tableWidget_2.setColumnWidth(2, 150)
+    def loadTableData(self):
+        self.cursor.execute(f"select * from Transaction_Data where Account_Name='{self.ui.cmbSelectAccount.currentText()}' AND Transaction_Type='Received'")
+        self.ui.Receivedtable.setRowCount(0)
+        i = 0
+        for row in self.cursor:
+            i = int(i) + 1
+            self.ui.Receivedtable.setRowCount(self.ui.Receivedtable.rowCount() + 1)
+            rw = self.ui.Receivedtable.rowCount()
+            self.ui.Receivedtable.setItem(rw - 1, 0, QTableWidgetItem(str(i)))
+            self.ui.Receivedtable.setItem(rw - 1, 1, QTableWidgetItem(str(row[4])))
+            self.ui.Receivedtable.setItem(rw - 1, 2, QTableWidgetItem(str(row[5])))
+            self.ui.Receivedtable.setItem(rw - 1, 3, QTableWidgetItem(str(row[6])))
 
-            Current_Date = QDate.currentDate()
-            self.ui.dateEdit.setDate(Current_Date)
+    def tableClick1(self):
+        cr = self.ui.Receivedtable.currentRow().__index__()
+        print(cr)
+        self.id = self.ui.Receivedtable.item(cr, 0).text()
+        print("Selected Id=",self.id)
+        sdate = self.ui.Receivedtable.item(cr, 1).text()
+        sdate = sdate.split("/")
+        fdate = QDate(int(sdate[0]), int(sdate[1]), int(sdate[2]))
+        self.ui.dateEdit.setDate(fdate)
 
-            self.ui.tableWidget.clicked.connect(self.tableClick)
-            self.ui.tableWidget_2.clicked.connect(self.tableClick_2)
-            self.loadDataInTable()
-            self.ui.cmbSelectgroup.currentTextChanged.connect(self.groupSelect)
+        self.ui.txtAmount.setText(self.ui.Receivedtable.item(cr, 2).text())
+        self.ui.textNote.setPlainText(self.ui.Receivedtable.item(cr, 3).text())
+
+
+    def loadTableDataPayment(self):
+        self.cursor.execute(f"select * from Transaction_Data where Account_Name='{self.ui.cmbSelectAccount.currentText()}' AND Transaction_Type='Payment'")
+        self.ui.Paymenttable.setRowCount(0)
+        i = 0
+        for row in self.cursor:
+            i = int(i) + 1
+            self.ui.Paymenttable.setRowCount(self.ui.Paymenttable.rowCount() + 1)
+            rw = self.ui.Paymenttable.rowCount()
+            self.ui.Paymenttable.setItem(rw - 1, 0, QTableWidgetItem(str(i)))
+            self.ui.Paymenttable.setItem(rw - 1, 1, QTableWidgetItem(str(row[4])))
+            self.ui.Paymenttable.setItem(rw - 1, 2, QTableWidgetItem(str(row[5])))
+            self.ui.Paymenttable.setItem(rw - 1, 3, QTableWidgetItem(str(row[6])))
+
+    def tableClick2(self):
+        cr = self.ui.Paymenttable.currentRow().__index__()
+        print(cr)
+        self.Id = self.ui.Paymenttable.item(cr, 0).text()
+        sdate = self.ui.Paymenttable.item(cr, 1).text()
+        sdate = sdate.split("/")
+        fdate = QDate(int(sdate[0]), int(sdate[1]), int(sdate[2]))
+        self.ui.dateEdit.setDate(fdate)
+        self.ui.txtAmount.setText(self.ui.Paymenttable.item(cr, 2).text())
+        self.ui.textNote.setPlainText(self.ui.Paymenttable.item(cr, 3).text())
 
     def groupSelect(self):
         self.ui.cmbSelectAccount.clear()
@@ -55,44 +107,6 @@ class clsTransaction(QMainWindow):
         for row in result:
             self.ui.cmbSelectAccount.addItem(str(row[2]))
 
-    def loadDataInTable(self):
-        self.cursor.execute(f"select * from Transaction_Data")
-        result = self.cursor.fetchall()
-        self.ui.tableWidget.setRowCount(0)
-        rw = 0
-        for row in result:
-            rw = rw + 1
-            self.ui.tableWidget.setColumnCount(rw)
-            self.ui.tableWidget.setItem(rw - 1, 0, QTableWidgetItem(str(row[0])))
-            self.ui.tableWidget.setItem(rw - 1, 1, QTableWidgetItem(str(row[1])))
-            self.ui.tableWidget.setItem(rw - 1, 2, QTableWidgetItem(str(row[2])))
-
-        self.ui.tableWidget_2.setRowCount(0)
-        rw = 0
-        for row in result:
-            rw = rw + 1
-            self.ui.tableWidget_2.setColumnCount(rw)
-            self.ui.tableWidget_2.setItem(rw - 1, 0, QTableWidgetItem(str(row[0])))
-            self.ui.tableWidget_2.setItem(rw - 1, 1, QTableWidgetItem(str(row[1])))
-            self.ui.tableWidget_2.setItem(rw - 1, 2, QTableWidgetItem(str(row[2])))
-
-    def tableClick(self):
-        cr = self.ui.tableWidget.currentRow().__index__()
-        print(cr)
-        self.id = self.ui.tableWidget.item(cr, 0).text()
-        self.ui.cmbSelectgroup.setCurrentText(self.ui.tableWidget.item(cr, 1).text())
-        self.ui.cmbSelectAccount.setCurrentText(self.ui.tableWidget.item(cr, 2).text())
-        S_Date = self.ui.tableWidget.item(cr, 3).text()
-        S_Date = S_Date.split("/")
-        F_Date = (int(S_Date[0]), int(S_Date[1]), int(S_Date[2]))
-        self.ui.radReceived.setDate(F_Date)
-        Transaction_Type = self.ui.tableWidget.item(cr, 4).text()
-        if Transaction_Type == "Received":
-            self.ui.radReceived.setChecked(True)
-        if Transaction_Type == "Payment":
-            self.ui.radPayment.setChecked(True)
-        self.ui.txtAmount.setText(self.ui.tableWidget.item(cr, 5).text())
-        self.ui.textNote.setText(self.ui.tableWidget.item(cr, 6).text())
 
     def NewBtnClick(self):
         self.ui.cmbSelectgroup.currentText("")
@@ -103,33 +117,38 @@ class clsTransaction(QMainWindow):
     def SaveBtnClick(self):
         Selectgroup = self.ui.cmbSelectgroup.currentText()
         SelectAccount = self.ui.cmbSelectAccount.currentText()
-        Date = self.ui.dateEdit.date().toString("yyyy/MM/dd")
         Transaction_Type = ""
         if self.ui.radReceived.isChecked():
             Transaction_Type = "Received"
-        if self.ui.radPayment.isChecked():
+        elif self.ui.radPayment.isChecked():
             Transaction_Type = "Payment"
+        else:
+            QMessageBox.warning(self,"Warning","Please select Transaction Type!")
+        Date = self.ui.dateEdit.date().toString("yyyy/MM/dd")
 
-        sql = f"insert into Transaction_Data values(null,'{Selectgroup}','{SelectAccount}','{Date}','{Transaction_Type}','{self.ui.txtAmount.text()}','{self.ui.textNote.toPlainText()}')"
+        sql = f"insert into Transaction_Data values(null,'{Selectgroup}','{SelectAccount}','{Transaction_Type}','{Date}','{self.ui.txtAmount.text()}','{self.ui.textNote.toPlainText()}')"
         self.cursor.execute(sql)
         self.conn.commit()
-        self.loadDataInTable()
+        #self.loadDataInTable()
+        #self.loadTableDataPayment()
 
     def UpdateBtnClick(self):
         Selectgroup = self.ui.cmbSelectgroup.currentText()
         SelectAccount = self.ui.cmbSelectAccount.currentText()
-        Date = (self.ui.dateEdit.date().toString("yyyy/MM/dd"))
         Transaction_Type = ""
         if self.ui.radReceived.isChecked():
             Transaction_Type = "Received"
-        if self.ui.radPayment.isChecked():
+        elif self.ui.radPayment.isChecked():
             Transaction_Type = "Payment"
-        sql = f"Update Transaction_Data set Group_Name='{Selectgroup}',Account_Name='{SelectAccount}',Date='{Date}',Transaction_Type'{Transaction_Type},'Amount='{self.ui.txtAmount.text()}',Note='{self.ui.textNote.toPlainText()}'"
+        else:
+            QMessageBox.warning(self, "Warning", "Please select Transaction Type!")
+        Date = self.ui.dateEdit.date().toString("yyyy/MM/dd")
+
+        sql = f"update Transaction_Data set Group_Name='{Selectgroup}',Account_Name='{SelectAccount}',Transaction_Type='{Transaction_Type}',Date='{Date}',Amount='{self.ui.txtAmount.text()}',Note='{self.ui.textNote.toPlainText()}' where Id='{self.id}'"
         self.cursor.execute(sql)
         self.conn.commit()
-        self.loadDataInTable()
 
     def DeleteBtnClick(self):
-        self.cursor.execute(f"delete from Transaction_Data where Id={self.id}")
-        self.conn.commit()
-        self.loadDataInTable()
+       self.cursor.execute(f"delete from Transaction_Data where Id={self.id}")
+       self.conn.commit()
+        #self.loadDataInTable()

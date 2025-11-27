@@ -5,19 +5,19 @@ from Login.clsLogin import clsLogin
 import sys
 
 app=QApplication([])
-conn=sqlite3.connect('DataBase.db')
-cursor=conn.cursor()
-sql=f"select * from User_table"
-cursor.execute(sql)
-result=cursor.fetchall()
-i=0
-for row in result:
-    i+=1
+#conn=sqlite3.connect('DataBase.db')
+#cursor=conn.cursor()
+#sql=f"select * from User_table"
+#cursor.execute(sql)
+#result=cursor.fetchall()
+#i=0
+#for row in result:
+ #   i+=1
 m=clsMainWindow()
-f=clsLogin()
+#f=clsLogin()
 
-if i==0:
-    m.show()
-else:
-    f.show()
+#if i==0:
+m.show()
+#else:
+    #f.show()
 sys.exit(app.exec_())

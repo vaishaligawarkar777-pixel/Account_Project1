@@ -210,7 +210,7 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
      <string>Payment</string>
     </property>
    </widget>
-   <widget class="QTableWidget" name="tableWidget">
+   <widget class="QTableWidget" name="Receivedtable">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -249,7 +249,7 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QTableWidget" name="tableWidget_2">
+   <widget class="QTableWidget" name="Paymenttable">
     <property name="geometry">
      <rect>
       <x>550</x>
